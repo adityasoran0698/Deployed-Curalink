@@ -31,10 +31,17 @@ load_dotenv()
 model = ChatOpenAI(model="gpt-4o-mini")
 
 
-embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/paraphrase-MiniLM-L3-v2",
-    encode_kwargs={"batch_size": 16},
-)
+_embedding_model = None
+
+
+def get_embedding_model():
+    global _embedding_model
+    if _embedding_model is None:
+        _embedding_model = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/paraphrase-MiniLM-L3-v2",
+            encode_kwargs={"batch_size": 16},
+        )
+    return _embedding_model
 
 
 prompt = """
@@ -315,8 +322,8 @@ def fetch_medical_results(query: str) -> str:
     ]
     ct_docs = [Document(page_content=json.dumps(d, indent=2)) for d in ct_docs_raw]
 
-    pub_vector_store = FAISS.from_documents(pub_docs, embedding_model)
-    ct_vector_store = FAISS.from_documents(ct_docs, embedding_model)
+    pub_vector_store = FAISS.from_documents(pub_docs, get_embedding_model())
+    ct_vector_store = FAISS.from_documents(ct_docs, get_embedding_model())
 
     # ── 4. Retrieve a large candidate set from FAISS with L2 distances ───────
     #    fetch_k is the broad pool FAISS searches; we then re-rank ourselves.

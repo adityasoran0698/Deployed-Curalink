@@ -32,8 +32,8 @@ model = ChatOpenAI(model="gpt-4o-mini")
 
 
 embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2",
-    encode_kwargs={"batch_size": 64},
+    model_name="sentence-transformers/paraphrase-MiniLM-L3-v2",
+    encode_kwargs={"batch_size": 16},
 )
 
 

@@ -390,8 +390,6 @@ const GLOBAL_STYLES = `
   }
 `;
 
-
-
 const mdComponents = {
   h2: ({ children }) => <h2>{children}</h2>,
   h3: ({ children }) => <h3>{children}</h3>,
@@ -613,11 +611,14 @@ export default function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: userMessage, session_id: sessionId }),
-      });
+      const response = await fetch(
+        "https://deployed-curalink.onrender.com/chat",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: userMessage, session_id: sessionId }),
+        },
+      );
       const data = await response.json();
       if (data.session_id) setSessionId(data.session_id);
       setMessages((prev) => [

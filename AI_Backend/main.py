@@ -12,7 +12,7 @@ from langchain.tools import tool
 import openalex
 import pubmed
 import clinical_trials
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -31,17 +31,7 @@ load_dotenv()
 model = ChatOpenAI(model="gpt-4o-mini")
 
 
-_embedding_model = None
-
-
-def get_embedding_model():
-    global _embedding_model
-    if _embedding_model is None:
-        _embedding_model = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/paraphrase-MiniLM-L3-v2",
-            encode_kwargs={"batch_size": 16},
-        )
-    return _embedding_model
+_embedding_model = OpenAIEmbeddings(model="text-embedding-3-small")
 
 
 prompt = """
@@ -308,26 +298,19 @@ def fetch_medical_results(query: str) -> str:
     expanded_query = data["expanded_query"]
     patient_context = data["patient_context"]
 
-    # ── 2. Fetch a BROAD candidate pool from all three APIs in parallel ──────
-    #    PubMed: 80 results  |  OpenAlex: 80 results  |  Trials: 100 results
-    #    Total pool: up to 260 candidates before filtering (meets spec 50–300)
     raw = _fetch_all(expanded_query, disease)
     pub_docs_raw = raw["publications"]  # list of dicts
     ct_docs_raw = raw["clinical_trials"]  # list of dicts
 
-    # ── 3. Build FAISS vector stores ─────────────────────────────────────────
     pub_docs = [
         Document(page_content=json.dumps(d, separators=(",", ":")))
         for d in pub_docs_raw
     ]
     ct_docs = [Document(page_content=json.dumps(d, indent=2)) for d in ct_docs_raw]
 
-    pub_vector_store = FAISS.from_documents(pub_docs, get_embedding_model())
-    ct_vector_store = FAISS.from_documents(ct_docs, get_embedding_model())
+    pub_vector_store = FAISS.from_documents(pub_docs, _embedding_model)
+    ct_vector_store = FAISS.from_documents(ct_docs, _embedding_model)
 
-    # ── 4. Retrieve a large candidate set from FAISS with L2 distances ───────
-    #    fetch_k is the broad pool FAISS searches; we then re-rank ourselves.
-    #    similarity_search_with_score returns (Document, l2_distance) pairs.
     pub_candidates = pub_vector_store.similarity_search_with_score(
         expanded_query,
         k=min(50, len(pub_docs)),  # retrieve up to 50 from the vector store

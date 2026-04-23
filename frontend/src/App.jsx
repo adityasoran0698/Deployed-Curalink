@@ -253,23 +253,6 @@ const GLOBAL_STYLES = `
   }
   .quick-btn:hover .quick-btn-arrow { transform: translateX(3px); color: var(--cyan); }
 
-  /* Copy button */
-  .copy-btn {
-    position: absolute;
-    top: 10px; right: 10px;
-    font-size: 10px;
-    padding: 4px 9px;
-    border-radius: 6px;
-    border: 1px solid var(--border-subtle);
-    background: rgba(2, 8, 23, 0.8);
-    color: var(--text-muted);
-    cursor: pointer;
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-  }
-  .copy-btn:hover { color: var(--cyan); border-color: var(--cyan-border); box-shadow: 0 0 8px rgba(0,245,212,0.2); }
-
   /* Send button */
   .send-btn {
     width: 38px; height: 38px;
@@ -407,19 +390,7 @@ const GLOBAL_STYLES = `
   }
 `;
 
-function CopyButton({ text }) {
-  const [copied, setCopied] = useState(false);
-  function handleCopy() {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }
-  return (
-    <button onClick={handleCopy} className="copy-btn">
-      {copied ? "✓ copied" : "copy"}
-    </button>
-  );
-}
+
 
 const mdComponents = {
   h2: ({ children }) => <h2>{children}</h2>,
@@ -493,7 +464,6 @@ function ChatMessage({ msg }) {
           </div>
         ) : (
           <div className="ai-bubble" style={{ padding: "14px 16px" }}>
-            <CopyButton text={msg.text} />
             <div className="ai-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -643,7 +613,7 @@ export default function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://deployed-curalink.onrender.com/chat", {
+      const response = await fetch("http://localhost:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: userMessage, session_id: sessionId }),

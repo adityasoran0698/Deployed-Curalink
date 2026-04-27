@@ -460,6 +460,11 @@ class QueryRequest(BaseModel):
     query: str
 
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the CuraLink Medical Research API !"}
+
+
 @app.post("/chat")
 async def chat(request: QueryRequest):
     query = request.query

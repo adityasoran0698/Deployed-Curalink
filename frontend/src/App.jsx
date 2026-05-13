@@ -570,7 +570,7 @@ export default function App() {
 
     try {
       const response = await fetch(
-        "https://deployed-curalink-mooo.vercel.app//chat",
+        "https://deployed-curalink-mooo.vercel.app/chat",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

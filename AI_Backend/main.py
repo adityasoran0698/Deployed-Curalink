@@ -19,11 +19,15 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://deployed-curalink.vercel.app"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://deployed-curalink.vercel.app",
+    ],
+    allow_origin_regex=r"https://deployed-curalink.*\.vercel\.app",  # ✅ covers all previews
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 load_dotenv()
 
 
@@ -355,8 +359,7 @@ def medical_research_tool(query: str) -> str:
 
 agent = model.bind_tools([medical_research_tool])
 
-SYSTEM_PROMPT = SystemMessage(
-    content="""
+SYSTEM_PROMPT = SystemMessage(content="""
 You are CuraLink — an AI medical research companion. You are warm, clear, and deeply caring.
 You are NOT a cold database. You are NOT a medical professional. 
 You ARE a knowledgeable friend who fetches real research and explains it in human terms.
@@ -449,8 +452,7 @@ IMPORTANT
 - Never give a response that is ONLY a disclaimer — always give real information first
 - Follow-ups deserve real answers, not deflections
 - You remember the full conversation — use it
-"""
-)
+""")
 messages = []
 messages.append(SYSTEM_PROMPT)
 

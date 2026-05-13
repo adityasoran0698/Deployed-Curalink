@@ -34,12 +34,10 @@ const GLOBAL_STYLES = `
     overflow: hidden;
   }
 
-  /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--cyan-border); border-radius: 4px; }
 
-  /* Grid background */
   .chat-bg {
     background-color: var(--bg-void);
     background-image:
@@ -55,7 +53,6 @@ const GLOBAL_STYLES = `
                 radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
   }
 
-  /* Sidebar glow line */
   .sidebar { position: relative; }
   .sidebar::after {
     content: '';
@@ -64,7 +61,6 @@ const GLOBAL_STYLES = `
     opacity: 0.4;
   }
 
-  /* Neon glow on AI bubble */
   .ai-bubble {
     background: var(--bg-glass);
     border: 1px solid var(--border-mid);
@@ -79,7 +75,6 @@ const GLOBAL_STYLES = `
     background: linear-gradient(135deg, rgba(0,245,212,0.05) 0%, transparent 50%);
   }
 
-  /* User bubble */
   .user-bubble {
     background: linear-gradient(135deg, rgba(255,159,28,0.25) 0%, rgba(255,100,50,0.15) 100%);
     border: 1px solid rgba(255, 159, 28, 0.35);
@@ -87,7 +82,6 @@ const GLOBAL_STYLES = `
     border-radius: 18px 0px 18px 18px;
   }
 
-  /* Markdown inside AI bubble */
   .ai-content h2 {
     font-family: 'Rajdhani', sans-serif;
     font-size: 13px;
@@ -146,122 +140,63 @@ const GLOBAL_STYLES = `
     border-radius: 0 8px 8px 0;
     box-shadow: inset 2px 0 12px rgba(0,245,212,0.05);
   }
-  .ai-content blockquote p {
-    margin: 0;
-    color: rgba(200, 240, 235, 0.85);
-    font-size: 12.5px;
-  }
+  .ai-content blockquote p { margin: 0; color: rgba(200, 240, 235, 0.85); font-size: 12.5px; }
 
   .ai-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0;
-    font-size: 12px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border-subtle);
+    width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px;
+    border-radius: 8px; overflow: hidden; border: 1px solid var(--border-subtle);
   }
-  .ai-content thead {
-    background: linear-gradient(90deg, rgba(0,245,212,0.12), rgba(139,92,246,0.12));
-  }
+  .ai-content thead { background: linear-gradient(90deg, rgba(0,245,212,0.12), rgba(139,92,246,0.12)); }
   .ai-content th {
-    padding: 8px 12px;
-    text-align: left;
-    color: var(--cyan);
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 11px;
-    border-bottom: 1px solid var(--border-mid);
+    padding: 8px 12px; text-align: left; color: var(--cyan);
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 11px; border-bottom: 1px solid var(--border-mid);
   }
   .ai-content td {
-    padding: 7px 12px;
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--border-subtle);
-    font-weight: 300;
-    font-size: 12.5px;
+    padding: 7px 12px; color: var(--text-primary);
+    border-bottom: 1px solid var(--border-subtle); font-weight: 300; font-size: 12.5px;
   }
   .ai-content tr:last-child td { border-bottom: none; }
   .ai-content tr:hover td { background: rgba(0,245,212,0.04); }
 
   .ai-content a {
-    color: var(--cyan);
-    text-decoration: underline;
+    color: var(--cyan); text-decoration: underline;
     text-decoration-color: rgba(0, 245, 212, 0.4);
-    text-underline-offset: 3px;
-    transition: text-shadow 0.2s;
+    text-underline-offset: 3px; transition: text-shadow 0.2s;
   }
   .ai-content a:hover { text-shadow: 0 0 10px var(--cyan); }
-
-  .ai-content hr {
-    border: none;
-    border-top: 1px solid var(--border-subtle);
-    margin: 14px 0;
-  }
+  .ai-content hr { border: none; border-top: 1px solid var(--border-subtle); margin: 14px 0; }
 
   .ai-content code {
-    background: rgba(0, 245, 212, 0.08);
-    color: var(--cyan);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    background: rgba(0, 245, 212, 0.08); color: var(--cyan);
+    padding: 2px 6px; border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
     border: 1px solid rgba(0, 245, 212, 0.15);
   }
-
   .ai-content pre {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 12px;
-    overflow-x: auto;
-    margin: 10px 0;
+    background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle);
+    border-radius: 8px; padding: 12px; overflow-x: auto; margin: 10px 0;
   }
-  .ai-content pre code {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 11px;
-  }
+  .ai-content pre code { background: none; border: none; padding: 0; font-size: 11px; }
 
-  /* Quick query button */
   .quick-btn {
-    width: 100%;
-    text-align: left;
-    padding: 9px 12px;
-    border-radius: 8px;
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-muted);
-    font-family: 'Exo 2', sans-serif;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
+    width: 100%; text-align: left; padding: 9px 12px; border-radius: 8px;
+    background: transparent; border: 1px solid transparent;
+    color: var(--text-muted); font-family: 'Exo 2', sans-serif;
+    font-size: 12px; cursor: pointer; transition: all 0.2s;
     display: flex; align-items: center; gap: 8px;
   }
   .quick-btn:hover {
-    background: rgba(0, 245, 212, 0.06);
-    border-color: var(--border-subtle);
-    color: var(--cyan);
-    box-shadow: 0 0 10px rgba(0,245,212,0.05);
+    background: rgba(0, 245, 212, 0.06); border-color: var(--border-subtle);
+    color: var(--cyan); box-shadow: 0 0 10px rgba(0,245,212,0.05);
   }
-  .quick-btn-arrow {
-    color: var(--violet);
-    font-size: 14px;
-    transition: transform 0.2s;
-  }
+  .quick-btn-arrow { color: var(--violet); font-size: 14px; transition: transform 0.2s; }
   .quick-btn:hover .quick-btn-arrow { transform: translateX(3px); color: var(--cyan); }
 
-  /* Send button */
   .send-btn {
-    width: 38px; height: 38px;
-    border-radius: 10px;
-    border: none;
+    width: 38px; height: 38px; border-radius: 10px; border: none;
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
+    cursor: pointer; transition: all 0.2s; flex-shrink: 0;
     background: linear-gradient(135deg, var(--cyan) 0%, #00c2a8 100%);
     box-shadow: 0 0 16px rgba(0, 245, 212, 0.35);
   }
@@ -269,50 +204,34 @@ const GLOBAL_STYLES = `
   .send-btn:active { transform: scale(0.96); }
   .send-btn:disabled { background: rgba(0,245,212,0.15); box-shadow: none; cursor: not-allowed; }
 
-  /* Textarea */
   .chat-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text-primary);
-    font-family: 'Exo 2', sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    resize: none;
-    max-height: 120px;
-    line-height: 1.6;
-    caret-color: var(--cyan);
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text-primary); font-family: 'Exo 2', sans-serif;
+    font-size: 13px; font-weight: 300; resize: none; max-height: 120px;
+    line-height: 1.6; caret-color: var(--cyan);
   }
   .chat-input::placeholder { color: var(--text-dim); }
 
-  /* Input wrapper */
   .input-wrapper {
     display: flex; align-items: flex-end; gap: 12px;
-    background: rgba(8, 14, 31, 0.9);
-    border: 1px solid var(--border-mid);
-    border-radius: 14px;
-    padding: 12px 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    backdrop-filter: blur(10px);
+    background: rgba(8, 14, 31, 0.9); border: 1px solid var(--border-mid);
+    border-radius: 14px; padding: 12px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s; backdrop-filter: blur(10px);
   }
   .input-wrapper:focus-within {
     border-color: rgba(0, 245, 212, 0.5);
     box-shadow: 0 0 20px rgba(0, 245, 212, 0.1), 0 0 0 1px rgba(0,245,212,0.08);
   }
 
-  /* Online badge */
   .online-badge {
     display: flex; align-items: center; gap: 7px;
-    padding: 5px 12px;
-    border-radius: 20px;
+    padding: 5px 12px; border-radius: 20px;
     border: 1px solid rgba(16, 255, 177, 0.25);
     background: rgba(16, 255, 177, 0.06);
   }
   .online-dot {
     width: 7px; height: 7px; border-radius: 50%;
-    background: var(--green-neo);
-    box-shadow: 0 0 8px var(--green-neo);
+    background: var(--green-neo); box-shadow: 0 0 8px var(--green-neo);
     animation: pulse-green 2s ease infinite;
   }
   @keyframes pulse-green {
@@ -320,7 +239,6 @@ const GLOBAL_STYLES = `
     50% { opacity: 0.6; box-shadow: 0 0 4px var(--green-neo); }
   }
 
-  /* Loading dots */
   @keyframes bounce-neo {
     0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
     40% { transform: translateY(-6px); opacity: 1; }
@@ -329,45 +247,72 @@ const GLOBAL_STYLES = `
   .dot-2 { animation: bounce-neo 1.4s ease-in-out infinite 160ms; }
   .dot-3 { animation: bounce-neo 1.4s ease-in-out infinite 320ms; }
 
-  /* Scanner line in loading */
-  @keyframes scan {
-    0% { transform: translateY(0); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translateY(28px); opacity: 0; }
+  /* ── Progress bar ── */
+  .progress-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 245, 212, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 10px 0 8px;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    box-shadow: 0 0 8px rgba(0, 245, 212, 0.5);
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .progress-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .progress-phrase {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--cyan);
+    opacity: 0.75;
+    letter-spacing: 0.04em;
+    animation: phraseFlicker 2s ease infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+  }
+  .progress-pct {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: rgba(0, 245, 212, 0.5);
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  @keyframes phraseFlicker {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
   }
 
-  /* Logo pulse */
   @keyframes logo-pulse {
     0%, 100% { box-shadow: 0 0 12px rgba(0,245,212,0.4); }
     50% { box-shadow: 0 0 24px rgba(0,245,212,0.7), 0 0 48px rgba(0,245,212,0.2); }
   }
   .logo-icon { animation: logo-pulse 3s ease-in-out infinite; }
 
-  /* Source tags */
   .source-tag {
-    font-size: 10px;
-    font-family: 'IBM Plex Mono', monospace;
-    padding: 3px 8px;
-    border-radius: 5px;
-    border: 1px solid var(--border-subtle);
-    color: var(--text-muted);
-    background: rgba(0, 245, 212, 0.04);
-    letter-spacing: 0.04em;
+    font-size: 10px; font-family: 'IBM Plex Mono', monospace;
+    padding: 3px 8px; border-radius: 5px;
+    border: 1px solid var(--border-subtle); color: var(--text-muted);
+    background: rgba(0, 245, 212, 0.04); letter-spacing: 0.04em;
   }
 
-  /* Avatar */
   .avatar-ai {
     width: 36px; height: 36px; border-radius: 10px;
     background: linear-gradient(135deg, rgba(0,245,212,0.15), rgba(139,92,246,0.15));
     border: 1px solid var(--border-mid);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--cyan);
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
+    font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700;
+    color: var(--cyan); letter-spacing: 0.05em; flex-shrink: 0;
     box-shadow: 0 0 12px rgba(0,245,212,0.1);
   }
   .avatar-user {
@@ -375,14 +320,10 @@ const GLOBAL_STYLES = `
     background: linear-gradient(135deg, rgba(255,159,28,0.3), rgba(255,80,50,0.2));
     border: 1px solid rgba(255,159,28,0.4);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--amber);
-    flex-shrink: 0;
+    font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700;
+    color: var(--amber); flex-shrink: 0;
   }
 
-  /* Section divider in sidebar */
   .sidebar-divider {
     height: 1px;
     background: linear-gradient(to right, transparent, var(--border-mid), transparent);
@@ -477,7 +418,10 @@ function ChatMessage({ msg }) {
   );
 }
 
-function LoadingBubble({ phrase }) {
+// ── LoadingBubble with progress bar ──────────────────────────────────────────
+function LoadingBubble({ progress, phrase }) {
+  const displayPct = Math.round(progress);
+
   return (
     <div
       style={{
@@ -490,14 +434,15 @@ function LoadingBubble({ phrase }) {
       <div className="avatar-ai">CL</div>
       <div
         className="ai-bubble"
-        style={{ padding: "14px 18px", minWidth: "160px" }}
+        style={{ padding: "14px 18px", minWidth: "280px", maxWidth: "340px" }}
       >
+        {/* Bouncing dots */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: "6px",
-            marginBottom: phrase ? "8px" : "0",
+            marginBottom: "0",
           }}
         >
           {[0, 1, 2].map((i) => (
@@ -509,32 +454,24 @@ function LoadingBubble({ phrase }) {
                 width: "7px",
                 height: "7px",
                 borderRadius: "50%",
-                background:
-                  i === 0
-                    ? "var(--cyan)"
-                    : i === 1
-                      ? "var(--violet)"
-                      : "var(--cyan)",
+                background: i === 1 ? "var(--violet)" : "var(--cyan)",
                 boxShadow:
                   i === 1 ? "0 0 8px var(--violet)" : "0 0 8px var(--cyan)",
               }}
             />
           ))}
         </div>
-        {phrase && (
-          <p
-            style={{
-              fontSize: "11px",
-              fontFamily: "'IBM Plex Mono', monospace",
-              color: "var(--cyan)",
-              opacity: 0.7,
-              letterSpacing: "0.04em",
-              animation: "fadeInOut 2s ease infinite",
-            }}
-          >
-            {phrase}
-          </p>
-        )}
+
+        {/* Progress bar */}
+        <div className="progress-track">
+          <div className="progress-fill" style={{ width: `${progress}%` }} />
+        </div>
+
+        {/* Phrase + percentage */}
+        <div className="progress-footer">
+          <span className="progress-phrase">{phrase}</span>
+          <span className="progress-pct">{displayPct}%</span>
+        </div>
       </div>
     </div>
   );
@@ -569,38 +506,59 @@ export default function App() {
   const [messages, setMessages] = useState([firstMessage]);
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [showPhrases, setShowPhrases] = useState(false);
   const [sessionId, setSessionId] = useState(null);
 
   const bottomRef = useRef(null);
-  const intervalRef = useRef(null);
-  const timeoutRef = useRef(null);
+  const progressIntervalRef = useRef(null);
+  const phraseIntervalRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
+  // Drive the progress bar while loading
   useEffect(() => {
     if (isLoading) {
-      setShowPhrases(false);
-      timeoutRef.current = setTimeout(() => {
-        setShowPhrases(true);
-        intervalRef.current = setInterval(() => {
-          setPhraseIndex((p) => (p + 1) % LOADING_PHRASES.length);
-        }, 2000);
-      }, 3000);
-    } else {
-      clearTimeout(timeoutRef.current);
-      clearInterval(intervalRef.current);
+      setProgress(0);
       setPhraseIndex(0);
-      setShowPhrases(false);
+
+      // Tick progress: fast early, slow near 92 (never hits 100 until response arrives)
+      progressIntervalRef.current = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 92) return prev;
+          const increment =
+            prev < 30
+              ? Math.random() * 6 + 3
+              : prev < 60
+                ? Math.random() * 4 + 1.5
+                : prev < 80
+                  ? Math.random() * 2 + 0.5
+                  : Math.random() * 0.8 + 0.1;
+          return Math.min(92, prev + increment);
+        });
+      }, 400);
+
+      // Rotate phrases every 2 s
+      phraseIntervalRef.current = setInterval(() => {
+        setPhraseIndex((p) => (p + 1) % LOADING_PHRASES.length);
+      }, 2000);
+    } else {
+      clearInterval(progressIntervalRef.current);
+      clearInterval(phraseIntervalRef.current);
     }
+
     return () => {
-      clearTimeout(timeoutRef.current);
-      clearInterval(intervalRef.current);
+      clearInterval(progressIntervalRef.current);
+      clearInterval(phraseIntervalRef.current);
     };
   }, [isLoading]);
+
+  // Snap to 100% when response arrives
+  const finishProgress = () => {
+    setProgress(100);
+  };
 
   async function sendMessage(query) {
     const userMessage = query.trim();
@@ -621,23 +579,33 @@ export default function App() {
       );
       const data = await response.json();
       if (data.session_id) setSessionId(data.session_id);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "ai",
-          text: data.response || "Sorry, I could not find a response.",
-        },
-      ]);
+
+      finishProgress();
+
+      // Small delay so user sees 100% before the bubble swaps to content
+      setTimeout(() => {
+        setIsLoading(false);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "ai",
+            text: data.response || "Sorry, I could not find a response.",
+          },
+        ]);
+      }, 350);
     } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "ai",
-          text: "Could not connect to the server. Please make sure the backend is running.",
-        },
-      ]);
+      finishProgress();
+      setTimeout(() => {
+        setIsLoading(false);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "ai",
+            text: "Could not connect to the server. Please make sure the backend is running.",
+          },
+        ]);
+      }, 350);
     }
-    setIsLoading(false);
   }
 
   function handleKeyDown(e) {
@@ -741,7 +709,6 @@ export default function App() {
             >
               Quick Search
             </p>
-
             <div
               style={{ display: "flex", flexDirection: "column", gap: "3px" }}
             >
@@ -756,10 +723,7 @@ export default function App() {
                 </button>
               ))}
             </div>
-
             <div className="sidebar-divider" style={{ marginTop: "20px" }} />
-
-            {/* Stats decoration */}
             <div style={{ padding: "4px" }}>
               {[
                 { label: "Publications", val: "32M+", color: "var(--cyan)" },
@@ -878,7 +842,6 @@ export default function App() {
                 Research-backed answers · Evidence synthesis · Clinical trials
               </p>
             </div>
-
             <div className="online-badge">
               <span className="online-dot" />
               <span
@@ -909,7 +872,8 @@ export default function App() {
             ))}
             {isLoading && (
               <LoadingBubble
-                phrase={showPhrases ? LOADING_PHRASES[phraseIndex] : ""}
+                progress={progress}
+                phrase={LOADING_PHRASES[phraseIndex]}
               />
             )}
             <div ref={bottomRef} />
@@ -987,7 +951,6 @@ export default function App() {
 
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes fadeInOut { 0%,100%{opacity:0.5} 50%{opacity:1} }
       `}</style>
     </>
   );

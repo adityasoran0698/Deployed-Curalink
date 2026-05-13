@@ -3,7 +3,6 @@ import json
 import os
 from dotenv import load_dotenv
 from ranking import rank_publications, rank_clinical_trials
-from langchain_huggingface import HuggingFaceEmbeddings
 from concurrent.futures import ThreadPoolExecutor
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage, SystemMessage
 from langchain_core.documents import Document
